@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -eu
-declare INPUT_REMOTE="${INPUT_REMOTE:-cargo}"
+declare INPUT_REMOTE="${INPUT_REMOTE:-origin}"
 declare INPUT_TOKEN="${INPUT_TOKEN:-}"
 declare GITHUB_ACTOR="${GITHUB_ACTOR:-}"
 declare GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-}"
@@ -37,7 +37,7 @@ setup_git() {
    git config http.sslVerify false
    git config user.name "${INPUT_USER}"
    git config user.email "${INPUT_EMAIL}"
-   git remote add "${INPUT_REMOTE}" "${remote_repo}"
+   git remote set-url "${INPUT_REMOTE}" "${remote_repo}"
    git show-ref # useful for debugging
 }
 

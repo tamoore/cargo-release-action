@@ -13,7 +13,7 @@ inputs:
     required: true
   remote:
     required: false
-    description: 'Set the git remote name to push too. Note "origin" will probably fail in most cases. Default: "cargo"'
+    description: 'Set the git remote name to push too. Note "origin" will probably fail in most cases. Default: "origin"'
   user:
     required: false
     description: 'Set the git user name to be used when pushing back to the remote. Default: Automated User'
