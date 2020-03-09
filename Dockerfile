@@ -1,7 +1,5 @@
-FROM rust:latest
+FROM mooretodd/cargo-release-action:latest
 
 COPY bin/entrypoint.sh /entrypoint.sh
-
-RUN cargo install cargo-release 
 
 ENTRYPOINT ["/entrypoint.sh"]
