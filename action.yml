@@ -14,4 +14,4 @@ outputs:
     description: 'The tag released'
 runs:
   using: 'docker'
-  image: 'mooretodd/cargo-release-action'
+  image: 'docker://mooretodd/cargo-release-action'
