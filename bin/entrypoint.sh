@@ -34,7 +34,6 @@ is_a_token_set() {
 
 setup_git() {
    local remote_repo="https://${GITHUB_ACTOR}:${INPUT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-   git config http.sslVerify false
    git config user.name "${INPUT_USER}"
    git config user.email "${INPUT_EMAIL}"
    git remote set-url "${INPUT_REMOTE}" "${remote_repo}"
