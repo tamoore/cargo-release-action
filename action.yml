@@ -8,9 +8,6 @@ inputs:
   version:
     description: 'Version to update to. Required'
     required: true
-  token:
-    description: 'GITHUB_TOKEN for pushing to repo. Required.'
-    required: true
   remote:
     required: false
     description: 'Set the git remote name to push too. Note "origin" will probably fail in most cases. Default: "origin"'

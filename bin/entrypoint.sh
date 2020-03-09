@@ -2,6 +2,7 @@
 set -eu
 declare INPUT_REMOTE="${INPUT_REMOTE:-origin}"
 declare INPUT_TOKEN="${INPUT_TOKEN:-}"
+declare GITHUB_TOKEN_WORKAROUND="${GITHUB_TOKEN_WORKAROUND:-}"
 declare GITHUB_ACTOR="${GITHUB_ACTOR:-}"
 declare GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-}"
 declare INPUT_DRY_RUN="${INPUT_DRY_RUN:-false}"
@@ -10,7 +11,7 @@ declare INPUT_USER="${INPUT_USER:-Automated User}"
 declare INPUT_EMAIL="${INPUT_USER:-actions@users.noreply.github.com}"
 
 main() {
-   sanitize "${INPUT_TOKEN}" "token"
+   sanitize "${GITHUB_TOKEN_WORKAROUND}" "env var GITHUB_TOKEN_WORKAROUND is required"
 
    # initialize git settings for pushing tags and updated manifests
    setup_git
@@ -32,7 +33,7 @@ sanitize() {
 }
 
 setup_git() {
-   local remote_repo="https://${GITHUB_ACTOR}:${INPUT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+   local remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN_WORKAROUND}@github.com/${GITHUB_REPOSITORY}.git"
    git config user.name "${INPUT_USER}"
    git config user.email "${INPUT_EMAIL}"
    git remote set-url "${INPUT_REMOTE}" "${remote_repo}"
