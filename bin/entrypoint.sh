@@ -19,14 +19,14 @@ main() {
    fi
 
    if [[ "${INPUT_DRY_RUN}" == "false" ]]; then
-      cargo release "${INPUT_VERSION}" --no-dev-version --push-remote "${INPUT_REMOTE}"
+      cargo release "${INPUT_VERSION}" --no-dev-version --no-confirm --push-remote "${INPUT_REMOTE}"
    fi
 }
 
 is_a_token_set() {
    if [[ -z "${GITHUB_TOKEN:-}" ]]; then
-    echo "No GITHUB_TOKEN set"
-    exit 1
+      echo "No GITHUB_TOKEN set"
+      exit 1
    fi
 }
 
