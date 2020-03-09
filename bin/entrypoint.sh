@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-function main {
+function main() {
    cargo release "${INPUT_VERSION}" --dry-run --no-dev-version
 }
 
