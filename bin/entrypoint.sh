@@ -37,7 +37,8 @@ setup_git() {
    git config user.name "${INPUT_USER}"
    git config user.email "${INPUT_EMAIL}"
    git remote set-url "${INPUT_REMOTE}" "${remote_repo}"
-   git show-ref # useful for debugging
+   git remote -v show
+   
 }
 
 main
