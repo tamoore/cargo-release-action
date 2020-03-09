@@ -15,5 +15,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'mooretodd/cargo-release-action'
-  args:
-    - ${{ inputs.who-to-greet }}
