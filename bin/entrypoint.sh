@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -eu
 declare INPUT_REMOTE="${INPUT_REMOTE:-cargo}"
-declare GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+declare INPUT_TOKEN="${INPUT_TOKEN:-}"
 declare GITHUB_ACTOR="${GITHUB_ACTOR:-}"
 declare GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-}"
 declare INPUT_DRY_RUN="${INPUT_DRY_RUN:-false}"
 declare INPUT_VERSION="${INPUT_VERSION:-}"
 
 main() {
-   # check to see if we have a GITHUB_TOKEN set other exit
+   # check to see if we have a INPUT_TOKEN set other exit
    is_a_token_set
 
    # initialize git settings for pushing tags and updated manifests
@@ -24,14 +24,14 @@ main() {
 }
 
 is_a_token_set() {
-   if [[ -z "${GITHUB_TOKEN:-}" ]]; then
-      echo "No GITHUB_TOKEN set"
+   if [[ -z "${INPUT_TOKEN:-}" ]]; then
+      echo "No INPUT_TOKEN set"
       exit 1
    fi
 }
 
 setup_git() {
-   local remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+   local remote_repo="https://${GITHUB_ACTOR}:${INPUT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
    git config http.sslVerify false
    git config user.name "Automated Publisher"
    git config user.email "actions@users.noreply.github.com"
