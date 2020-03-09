@@ -10,8 +10,7 @@ declare INPUT_USER="${INPUT_USER:-Automated User}"
 declare INPUT_EMAIL="${INPUT_USER:-actions@users.noreply.github.com}"
 
 main() {
-   # check to see if we have a INPUT_TOKEN set other exit
-   is_a_token_set
+   sanitize "${INPUT_TOKEN}" "token"
 
    # initialize git settings for pushing tags and updated manifests
    setup_git
@@ -25,9 +24,9 @@ main() {
    fi
 }
 
-is_a_token_set() {
-   if [[ -z "${INPUT_TOKEN:-}" ]]; then
-      echo "No INPUT_TOKEN set"
+sanitize() {
+   if [[ -z "${1}" ]]; then
+      echo >&2 "Unable to find the ${2}. Did you set with.${2}?"
       exit 1
    fi
 }
@@ -38,7 +37,7 @@ setup_git() {
    git config user.email "${INPUT_EMAIL}"
    git remote set-url "${INPUT_REMOTE}" "${remote_repo}"
    git remote -v show
-   
+
 }
 
 main
