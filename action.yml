@@ -3,12 +3,17 @@ name: 'Cargo Release'
 description: 'Releases a Cargo project'
 inputs:
   dry_run:  
-    description: 'Run a dry release'
+    description: 'Run a dry release. Default: false'
     required: false
-    default: 'false'
   version:
-    description: 'Version to update to'
+    description: 'Version to update to. Required'
     required: true
+  token:
+    description: 'GITHUB_TOKEN for pushing to repo. Required.'
+    required: true
+  remote:
+    required: false
+    description: 'Set the git remote name to push too. Note "origin" will probably fail in most cases. Default: "cargo"'
 outputs:
   tag: 
     description: 'The tag released'
