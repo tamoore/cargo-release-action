@@ -1,0 +1,19 @@
+# action.yml
+name: 'Cargo Release'
+description: 'Releases a Cargo project'
+inputs:
+  dry_run:  
+    description: 'Run a dry release'
+    required: false
+    default: 'false'
+  version:
+    description: 'Version to update to'
+    required: true
+outputs:
+  tag: 
+    description: 'The tag released'
+runs:
+  using: 'docker'
+  image: 'mooretodd/cargo-release-action'
+  args:
+    - ${{ inputs.who-to-greet }}
