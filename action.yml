@@ -14,6 +14,12 @@ inputs:
   remote:
     required: false
     description: 'Set the git remote name to push too. Note "origin" will probably fail in most cases. Default: "cargo"'
+  user:
+    required: false
+    description: 'Set the git user name to be used when pushing back to the remote. Default: Automated User'
+  email:
+    required: false
+    description: 'Set the email address to be used when pusing back to the remote. Default: actions@users.noreply.github.com'
 outputs:
   tag: 
     description: 'The tag released'

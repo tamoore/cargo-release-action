@@ -6,6 +6,8 @@ declare GITHUB_ACTOR="${GITHUB_ACTOR:-}"
 declare GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-}"
 declare INPUT_DRY_RUN="${INPUT_DRY_RUN:-false}"
 declare INPUT_VERSION="${INPUT_VERSION:-}"
+declare INPUT_USER="${INPUT_USER:-Automated User}"
+declare INPUT_EMAIL="${INPUT_USER:-actions@users.noreply.github.com}"
 
 main() {
    # check to see if we have a INPUT_TOKEN set other exit
@@ -33,8 +35,8 @@ is_a_token_set() {
 setup_git() {
    local remote_repo="https://${GITHUB_ACTOR}:${INPUT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
    git config http.sslVerify false
-   git config user.name "Automated Publisher"
-   git config user.email "actions@users.noreply.github.com"
+   git config user.name "${INPUT_USER}"
+   git config user.email "${INPUT_EMAIL}"
    git remote add "${INPUT_REMOTE}" "${remote_repo}"
    git show-ref # useful for debugging
 }
