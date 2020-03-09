@@ -9,7 +9,7 @@ inputs:
     description: 'Version to update to. Required'
     required: true
   token:
-    description: 'GITHUB_TOKEN for pushing to repo. Required.'
+    description: 'GITHUB_TOKEN for pushing to repo. Required. Set via env.'
     required: true
   remote:
     required: false

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -eu
-declare REMOTE="${REMOTE:-cargo}"
+declare INPUT_REMOTE="${INPUT_REMOTE:-cargo}"
 declare GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 declare GITHUB_ACTOR="${GITHUB_ACTOR:-}"
 declare GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-}"
@@ -15,11 +15,11 @@ main() {
    setup_git
 
    if [[ "${INPUT_DRY_RUN}" == "true" ]]; then
-      cargo release "${INPUT_VERSION}" --dry-run --no-dev-version --push-remote "${REMOTE}"
+      cargo release "${INPUT_VERSION}" --dry-run --no-dev-version --push-remote "${INPUT_REMOTE}"
    fi
 
    if [[ "${INPUT_DRY_RUN}" == "false" ]]; then
-      cargo release "${INPUT_VERSION}" --no-dev-version --push-remote "${REMOTE}"
+      cargo release "${INPUT_VERSION}" --no-dev-version --push-remote "${INPUT_REMOTE}"
    fi
 }
 
@@ -35,7 +35,7 @@ setup_git() {
    git config http.sslVerify false
    git config user.name "Automated Publisher"
    git config user.email "actions@users.noreply.github.com"
-   git remote add "${REMOTE}" "${remote_repo}"
+   git remote add "${INPUT_REMOTE}" "${remote_repo}"
    git show-ref # useful for debugging
 }
 
